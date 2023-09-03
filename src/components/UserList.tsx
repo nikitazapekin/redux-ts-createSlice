@@ -6,12 +6,12 @@ import { fetchUsers } from "../store/action-creator/user"
 import type {} from 'redux-thunk/extend-redux'
 import { useActions } from "../hooks/useActions"
 const UserList:React.FC =()=> {
-    const dispatch = useDispatch()
-  // const {fetchUsers} =useActions()
+   // const dispatch = useDispatch()
+ const {fetchUsers} =useActions()
    const {users, error, loading}=useTypedSelectors(state=> state.user)
   //  console.log(state)
   useEffect(()=> {
-dispatch(fetchUsers())
+fetchUsers()
   }, [])
   if(loading){
     return <h1>is loading</h1>
