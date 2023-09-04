@@ -1,18 +1,34 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import UserList from './components/UserList';
-import TodoList from './components/TodoList';
-
+import  {useAppSelector} from "./hooks/redux"
+import { useSelector } from 'react-redux';
+import { RootState } from './store/store';
+import { userSlice } from './store/reducers/UserSlice';
+import { useDispatch } from 'react-redux';
+//import { useAppSelector } from './hooks/redux';
+import { useAppDispatch } from './hooks/redux';
 function App() {
+  //const {} = useSelector((state: RootState)=>state.userReducer.)
+ //const {} = useAppSelector(state=>state.)
+ const {increment} = userSlice.actions
+ const dispatch= useAppDispatch()
+ console.log(increment(5))
+ const {count}= useAppSelector(state=> state.userReducer)
   return (
     <div className="App">
-      <UserList />
-
-      <TodoList />
+      <h1>
+        {count}
+      </h1>
+      <button onClick={()=> {
+        dispatch(increment(10))
+      }}>
+        INCREMENT 
+    </button> 
     </div>
   );
 }
 
 export default App;
-// npm i @types/react-redux redux react-redux redux-thunk axios
+//npm  install @reduxjs/toolkit
+//npm i react-redux @types/react-redux
